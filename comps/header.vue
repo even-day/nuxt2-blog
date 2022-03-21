@@ -32,7 +32,7 @@
 
 <script>
 import Headroom from "headroom.js";
-import {articleList, recordList, knowledgeList, festivals} from '~/utils/data';
+import {articleList, recordList, resourceList, festivals} from '~/utils/data';
 import dayjs from "~/utils/_dayjs";
 
 export default {
@@ -50,8 +50,8 @@ export default {
           url: '/records'
         },
         {
-          name: '文化',
-          url: '/knowledges'
+          name: '资源',
+          url: '/resources'
         }]
     }
   },
@@ -66,8 +66,8 @@ export default {
         case 'records':
           json = recordList;
           break
-        case 'knowledges':
-          json = knowledgeList;
+        case 'resources':
+          json = resourceList;
           break;
         case 'about':
           return 'https://github.com/yunyuyuan/nuxt2-blog'

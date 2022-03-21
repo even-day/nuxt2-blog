@@ -1,6 +1,6 @@
 import articleList from "~/rebuild/json/article.json";
 import recordList from "~/rebuild/json/record.json";
-import knowledgeList from "~/rebuild/json/knowledge.json";
+import resourceList from "~/rebuild/json/resource.json";
 import {inBrowser} from "~/utils/utils";
 
 const articleTagList = new Set();
@@ -8,11 +8,11 @@ articleList.forEach(item => {
   item.tags.forEach(v => articleTagList.add(v));
 })
 
-// const knowledgeTypeList = new Set();
-// knowledgeList.forEach(item => {
-//   knowledgeTypeList.add(item.type);
+// const resourceTypeList = new Set();
+// resourceList.forEach(item => {
+//   resourceTypeList.add(item.type);
 // })
-const knowledgeTypeList = [
+const resourceTypeList = [
   {key: 'book', name: '书籍'},
   {key: 'film', name: '影视'},
   {key: 'game', name: '游戏'},
@@ -119,4 +119,4 @@ const festivals = [
   },
 ];
 
-export {articleList, recordList, knowledgeList, articleTagList, knowledgeTypeList, token, festivals};
+export {articleList, recordList, resourceList, articleTagList, resourceTypeList, token, festivals};
