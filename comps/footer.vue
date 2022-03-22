@@ -1,13 +1,13 @@
 <template>
   <footer id="footer" class="flex w100">
     <div class="middle flexc">
-      <span>Copyright (c) 2019-2022 <b><a target="_blank" :href="'https://github.com/'+user">书生</a> | {{ hostName }}</b></span>
+      <span>Copyright (c) 2022-2022 <b><a target="_blank" :href="'https://github.com/'+user">书生</a> | {{ hostName }}</b></span>
       <span class="flex"><a class="rss" target="_blank" href="/sitemap.xml" title="rss">RSS <svg-icon name="rss"/></a>| Powered By <a class="nuxt" href="https://nuxtjs.org/" target="_blank">Nuxtjs</a></span>
     </div>
   </footer>
 </template>
 
-<script>
+<script>even-day
 import {inBrowser} from "~/utils/utils";
 import config from "@/config";
 
