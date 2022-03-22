@@ -46,13 +46,14 @@ export default {
         url: '/articles'
       },
         {
-          name: '记录',
-          url: '/records'
-        },
-        {
           name: '资源',
           url: '/resources'
-        }]
+        },
+        {
+          name: '记录',
+          url: '/records'
+        }
+        ]
     }
   },
   computed: {
