@@ -2,7 +2,7 @@
   <div class="edit-header flex w100">
     <svg-icon name="new" v-if="isNew"/>
     <div class="input flex">
-      <input v-model="token" placeholder="输入token" @change="updateToken"/>
+      <input v-model="token" type="password" placeholder="输入token" @change="updateToken"/>
       <input type="checkbox" v-model="saveToken" title="记住token"/>
     </div>
     <div class="draft flex">
