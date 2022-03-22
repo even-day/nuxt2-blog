@@ -1,3 +1,25 @@
 [
-
+    {
+        "title": "nodejs安装",
+        "id": 9387,
+        "time": 1647969673168,
+        "modifyTime": 1647969673168,
+        "len": 1082,
+        "encrypt": false,
+        "menu": [
+            {
+                "size": "big",
+                "text": "nodejs安装",
+                "url": "#id-nodejs%E5%AE%89%E8%A3%85"
+            },
+            {
+                "size": "big",
+                "text": "修改全局模块路径和缓存路径",
+                "url": "#id-%E4%BF%AE%E6%94%B9%E5%85%A8%E5%B1%80%E6%A8%A1%E5%9D%97%E8%B7%AF%E5%BE%84%E5%92%8C%E7%BC%93%E5%AD%98%E8%B7%AF%E5%BE%84"
+            }
+        ],
+        "tags": [
+            "nodejs"
+        ]
+    }
 ]
