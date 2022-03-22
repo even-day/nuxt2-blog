@@ -1,0 +1,63 @@
+<p>项目开源地址：<a target="_blank" href="https://github.com/whyour/qinglong">https://github.com/whyour/qinglong</a></p>
+<ol>
+<li>更新 yum    </li>
+</ol>
+<pre><small></small><div></div><code class="hljs language-smali">yum<span class="hljs-built_in"> check-update
+</span></code></pre>
+<ol start="2">
+<li>安装 Docker</li>
+</ol>
+<pre><small></small><div></div><code class="hljs language-livecodeserver">curl -fsSL <span class="hljs-keyword">https</span>://<span class="hljs-built_in">get</span>.docker.com | bash -s docker <span class="hljs-comment">--mirror Aliyun</span>
+</code></pre>
+<ol start="3">
+<li>启动 Docker，并配置开机启动</li>
+</ol>
+<pre><small></small><div></div><code class="hljs language-nsis">sudo <span class="hljs-params">system</span>ctl start docker <span class="hljs-comment">#启动</span>
+sudo <span class="hljs-params">system</span>ctl enable docker <span class="hljs-comment">#配置开机自启</span>
+</code></pre>
+<ol start="4">
+<li>拉取镜像</li>
+</ol>
+<ul>
+<li>配置国内 Docker 镜像源</li>
+</ul>
+<blockquote>
+  <p>科大镜像：<strong>https://docker.mirrors.ustc.edu.cn/</strong></p>
+  <p>网易：<strong>https://hub-mirror.c.163.com/</strong></p>
+  <p>七牛云加速器：<strong>https://reg-mirror.qiniu.com</strong></p>
+</blockquote>
+<ul>
+<li><p>编辑 /etc/docker/daemon.json 并写入如下内容（如果文件不存在请新建该文件）：    </p>
+<pre><small></small><div></div><code class="hljs language-prolog">{<span class="hljs-string">"registry-mirrors"</span>:[<span class="hljs-string">"https://reg-mirror.qiniu.com/"</span>]}
+</code></pre></li>
+<li><p>载入配置 重启 Docker</p>
+<pre><small></small><div></div><code class="hljs language-nsis">sudo <span class="hljs-params">system</span>ctl daemon-reload <span class="hljs-comment">#重载配置</span>
+sudo <span class="hljs-params">system</span>ctl restart docker <span class="hljs-comment">#重启docker</span>
+</code></pre></li>
+<li><p>检测是否生效    </p>
+<pre><small></small><div></div><code class="hljs language-nginx"><span class="hljs-attribute">docker</span> <span class="hljs-literal">info</span>
+</code></pre></li>
+</ul>
+<ol>
+<li><p>拉取镜像    </p>
+<pre><small></small><div></div><code class="hljs language-bash">docker pull whyour/qinglong:latest
+</code></pre></li>
+<li><p>部署镜像    </p>
+<pre><small></small><div></div><code class="hljs language-awk">docker run -dit \
+-v <span class="hljs-variable">$PWD</span><span class="hljs-regexp">/ql/</span>config:<span class="hljs-regexp">/ql/</span>config \
+-v <span class="hljs-variable">$PWD</span><span class="hljs-regexp">/ql/</span>log:<span class="hljs-regexp">/ql/</span>log \
+-v <span class="hljs-variable">$PWD</span><span class="hljs-regexp">/ql/</span>db:<span class="hljs-regexp">/ql/</span>db \
+-p <span class="hljs-number">5600</span>:<span class="hljs-number">5600</span> \
+--name qinglong \
+--hostname qinglong \
+--restart always \
+whyour/qinglong:latest
+</code></pre></li>
+<li><p>在浏览器输入 IP:5600 登入</p></li>
+</ol>
+<h2><sup class="fake-head" id="id-%E6%89%A9%E5%B1%95"></sup><a class="header-link" href="#id-%E6%89%A9%E5%B1%95"><p>扩展</p></a></h2>
+<pre><small></small><div></div><code class="hljs language-dsconfig"><span class="hljs-string">firewall-cmd</span> <span class="hljs-built_in">--zone=public</span> <span class="hljs-built_in">--list-ports</span> <span class="hljs-comment">#查看已开放的端口</span>
+<span class="hljs-string">firewall-cmd</span> <span class="hljs-built_in">--zone=public</span> <span class="hljs-built_in">--add-port=5600/tcp</span> <span class="hljs-built_in">--permanent</span> <span class="hljs-comment">#开放某端口</span>
+<span class="hljs-string">firewall-cmd</span> <span class="hljs-built_in">--zone=public</span> <span class="hljs-built_in">--remove-port=5672/tcp</span> <span class="hljs-built_in">--permanent</span> <span class="hljs-comment">#关闭某端口</span>
+<span class="hljs-string">firewall-cmd</span> <span class="hljs-built_in">--reload</span> <span class="hljs-comment">#重载防火墙配置</span>
+</code></pre>

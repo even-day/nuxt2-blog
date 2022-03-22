@@ -1,0 +1,37 @@
+<h2><sup class="fake-head" id="id-nodejs%E5%AE%89%E8%A3%85"></sup><a class="header-link" href="#id-nodejs%E5%AE%89%E8%A3%85"><p>nodejs 安装</p></a></h2>
+<ul>
+<li><p><a href="https://nodejs.org/en/download/">下载</a></p></li>
+<li><p>安装过程一直按回车</p></li>
+<li><p>测试是否安装成功</p></li>
+</ul>
+<pre><small></small><div></div><code class="hljs language-crmsh">  <span class="hljs-keyword">node</span> <span class="hljs-title">-v</span>
+  npm -v
+</code></pre>
+<h2><sup class="fake-head" id="id-%E4%BF%AE%E6%94%B9%E5%85%A8%E5%B1%80%E6%A8%A1%E5%9D%97%E8%B7%AF%E5%BE%84%E5%92%8C%E7%BC%93%E5%AD%98%E8%B7%AF%E5%BE%84"></sup><a class="header-link" href="#id-%E4%BF%AE%E6%94%B9%E5%85%A8%E5%B1%80%E6%A8%A1%E5%9D%97%E8%B7%AF%E5%BE%84%E5%92%8C%E7%BC%93%E5%AD%98%E8%B7%AF%E5%BE%84"><p>修改全局模块路径和缓存路径</p></a></h2>
+<p>当我们在执行 npm install <a href="https://so.csdn.net/so/search?q=express&amp;spm=1001.2101.3001.7020">express</a> -g 命令时，g 表示 global 全局。会默认下载到 c 盘，c 盘一般作为系统盘，尽量把一些程序安装到其他盘，来减少 c 盘空间的占用</p>
+<p>它的默认路径为：【C:\Users\ 用户名 \AppData\Roaming\npm】</p>
+<ol>
+<li>这里将全局模块（文件夹名：node<em>global）和缓存（文件夹名：node</em>cache）放在了 nodejs 安装目录下，在你的 nodejs 安装目录下创建创建两个文件夹，名称分别为：node<em>global 和 node</em>cache，在 node<em>global 文件夹下再建一个 node</em>modules 文件夹，配置环境变量用</li>
+</ol>
+<p><span class="image-container"><img data-viewer="" alt="" title="" src="https://s2.loli.net/2022/03/22/CX9To4LFu6YbSfR.png"><small class="desc"></small></span></p>
+<ol start="2">
+<li>win+R 打开运行窗口，输入 cmd，再输入以下两条指令</li>
+</ol>
+<pre><small></small><div></div><code class="hljs language-routeros">   npm<span class="hljs-built_in"> config </span><span class="hljs-built_in">set</span><span class="hljs-built_in"> prefix </span><span class="hljs-string">"创建的node_global文件夹所在路径"</span>
+   npm<span class="hljs-built_in"> config </span><span class="hljs-built_in">set</span> cache <span class="hljs-string">"创建的node_cache文件夹所在路径"</span>
+</code></pre>
+<ol start="3">
+<li>在 nodejs 的安装目录下，进入 node_modules——&gt;npm——&gt; 找到 npmrc 文件，打开</li>
+</ol>
+<pre><small></small><div></div><code class="hljs language-routeros">   添加以下命令：
+   <span class="hljs-attribute">prefix</span>=创建的node_global文件夹所在路径
+   <span class="hljs-attribute">cache</span>=创建的node_cache文件夹所在路径
+</code></pre>
+<ol start="4">
+<li>高级系统设置 ----- 环境变量</li>
+</ol>
+<blockquote>
+  <p>1 在系统变量中，新建，变量名：NODE<em>PATH 变量值：node</em>global 文件夹下的 node<em>modules 文件夹。如：E:\develop\nodejs\node</em>global\node_modules</p>
+  <p>2 修改用户变量中的 Path 变量，将默认的 npm 路径修改为新建的 node_global 路径</p>
+</blockquote>
+<p><span class="image-container"><img data-viewer="" alt="" title="" src="https://s2.loli.net/2022/03/22/tIR9Wv5FE6GuVNr.png"><small class="desc"></small></span></p>
