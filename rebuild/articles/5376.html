@@ -1,0 +1,24 @@
+<h2><sup class="fake-head" id="id-%E5%9B%BD%E5%86%85%E6%BA%90"></sup><a class="header-link" href="#id-%E5%9B%BD%E5%86%85%E6%BA%90"><p>国内源</p></a></h2>
+<blockquote>
+  <p>pypi 清华大学源：<a href="https://pypi.tuna.tsinghua.edu.cn/simple">https://pypi.tuna.tsinghua.edu.cn/simple</a>
+  pypi 豆瓣源 ：<a href="http://pypi.douban.com/simple/">http://pypi.douban.com/simple/</a>
+  pypi 腾讯源：<a href="http://mirrors.cloud.tencent.com/pypi/simple">http://mirrors.cloud.tencent.com/pypi/simple</a>
+  pypi 阿里源：<a href="http://mirrors.aliyun.com/pypi/simple/">http://mirrors.aliyun.com/pypi/simple/</a></p>
+</blockquote>
+<h2><sup class="fake-head" id="id-%E4%B8%B4%E6%97%B6%E4%BD%BF%E7%94%A8"></sup><a class="header-link" href="#id-%E4%B8%B4%E6%97%B6%E4%BD%BF%E7%94%A8"><p>临时使用</p></a></h2>
+<p>在安装包的时候，后面加上</p>
+<p><code>-i https://pypi.tuna.tsinghua.edu.cn/simple</code></p>
+<p>列如：</p>
+<p><code>pip install you-get -i https://pypi.tuna.tsinghua.edu.cn/simple</code></p>
+<h2><sup class="fake-head" id="id-%E6%B0%B8%E4%B9%85%E8%AE%BE%E7%BD%AE"></sup><a class="header-link" href="#id-%E6%B0%B8%E4%B9%85%E8%AE%BE%E7%BD%AE"><p>永久设置</p></a></h2>
+<pre><small></small><div></div><code class="hljs language-awk">/<span class="hljs-comment"># 清华源</span>
+pip config set global.index-url https:<span class="hljs-regexp">//</span>pypi.tuna.tsinghua.edu.cn/simple
+
+/<span class="hljs-comment"># 或：</span>
+/<span class="hljs-comment"># 阿里源</span>
+pip config set global.index-url https:<span class="hljs-regexp">//mi</span>rrors.aliyun.com<span class="hljs-regexp">/pypi/</span>simple/
+/<span class="hljs-comment"># 腾讯源</span>
+pip config set global.index-url http:<span class="hljs-regexp">//mi</span>rrors.cloud.tencent.com<span class="hljs-regexp">/pypi/</span>simple
+/<span class="hljs-comment"># 豆瓣源</span>
+pip config set global.index-url http:<span class="hljs-regexp">//</span>pypi.douban.com<span class="hljs-regexp">/simple/</span>
+</code></pre>
