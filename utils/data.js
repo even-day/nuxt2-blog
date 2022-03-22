@@ -15,7 +15,7 @@ articleList.forEach(item => {
 const resourceTypeList = [
   {key: 'book', name: '书籍'},
   {key: 'film', name: '影视'},
-  {key: 'game', name: '游戏'},
+  {key: 'software', name: '软件'},
 ]
 
 const token = {

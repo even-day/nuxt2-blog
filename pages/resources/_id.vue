@@ -11,7 +11,7 @@
         </div>
       </div>
       <div class="divider">
-        <div class="game" v-if="item.type === 'game'">
+        <div class="software" v-if="item.type === 'software'">
           <div class="pacman">
             <span class="top"></span>
             <span class="bottom"></span>
@@ -138,7 +138,7 @@ export default {
       height: 0;
       overflow: visible;
       margin-bottom: 40px;
-      .game {
+      .software {
         position: relative;
         $size: 26px;
         $duration: 0.8s;
