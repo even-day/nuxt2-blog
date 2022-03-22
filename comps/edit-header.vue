@@ -102,7 +102,7 @@ export default {
       margin: 5px 0;
       width: 200px;
     }
-    input[type]{
+    input[title]{
       margin-left: 5px;
       width: 16px;
       height: 16px;
