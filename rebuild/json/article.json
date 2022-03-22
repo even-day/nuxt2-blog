@@ -1,5 +1,23 @@
 [
     {
+        "title": "安装青龙面板",
+        "id": 5915,
+        "time": 1647977924738,
+        "modifyTime": 1647977924738,
+        "len": 1280,
+        "encrypt": false,
+        "menu": [
+            {
+                "size": "big",
+                "text": "扩展",
+                "url": "#id-%E6%89%A9%E5%B1%95"
+            }
+        ],
+        "tags": [
+            "其他"
+        ]
+    },
+    {
         "title": "nodejs安装",
         "id": 9387,
         "time": 1647969673168,
