@@ -96,7 +96,7 @@ export default {
     margin-right: auto;;
   }
   .input{
-    input:not([type]){
+    input:not([title]){
       align-self: stretch;
       padding: 4px 6px;
       margin: 5px 0;
@@ -125,7 +125,7 @@ export default {
     flex-wrap: wrap;
     .input {
       width: calc(100% - 45px);
-      input:not([type]) {
+      input:not([title]) {
         flex-grow: 1;
       }
     }
