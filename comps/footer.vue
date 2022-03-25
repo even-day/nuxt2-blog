@@ -2,7 +2,7 @@
   <footer id="footer" class="flex w100">
     <div class="middle flexc">
       <span>Copyright (c) 2022-2022 <b><a target="_blank" :href="'https://github.com/'+user">even-day</a> | {{ hostName }}</b></span>
-      <span class="flex"><a class="rss" target="_blank" href="/sitemap.xml" title="rss">RSS <svg-icon name="rss"/></a>| Powered By <a class="nuxt" href="https://nuxtjs.org/" target="_blank">Nuxtjs</a> 已运行{{number_of_days}}天</span>
+      <span class="flex"><a class="rss" target="_blank" href="/sitemap.xml" title="rss">RSS <svg-icon name="rss"/></a>| Powered By <a class="nuxt" href="https://nuxtjs.org/" target="_blank">Nuxtjs</a></span>
     </div>
   </footer>
 </template>
@@ -23,7 +23,6 @@ export default {
     return {
       user: config.githubName,
       hostName: inBrowser ? location.hostname : ''
-      number_of_days: number_of_days
     }
   }
 }
