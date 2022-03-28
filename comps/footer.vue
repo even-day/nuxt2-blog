@@ -43,7 +43,7 @@ export default {
     createTime() {
       let now = new Date();
       // 页脚建站时间计算脚本
-      var grt = new Date("03/22/2022 17:21:13"); //在此处修改你的建站时间，格式：月/日/年 时:分:秒
+      var grt = new Date("03/21/2022 22:00:00"); //在此处修改你的建站时间，格式：月/日/年 时:分:秒
       now.setTime(now.getTime() + 250);
 
       let days = (now - grt) / 1000 / 60 / 60 / 24;
