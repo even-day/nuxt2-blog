@@ -1,5 +1,58 @@
 [
     {
+        "title": "pip基本命令",
+        "id": 4455,
+        "time": 1648504532832,
+        "modifyTime": 1648504532832,
+        "len": 723,
+        "encrypt": false,
+        "menu": [
+            {
+                "size": "big",
+                "text": "1.查看pip版本",
+                "url": "#id-1.%E6%9F%A5%E7%9C%8Bpip%E7%89%88%E6%9C%AC"
+            },
+            {
+                "size": "big",
+                "text": "2.升级pip",
+                "url": "#id-2.%E5%8D%87%E7%BA%A7pip"
+            },
+            {
+                "size": "big",
+                "text": "\n安装库\n",
+                "url": "#id-3.%20%E5%AE%89%E8%A3%85%E5%BA%93"
+            },
+            {
+                "size": "big",
+                "text": "4.批量安装库",
+                "url": "#id-4.%E6%89%B9%E9%87%8F%E5%AE%89%E8%A3%85%E5%BA%93"
+            },
+            {
+                "size": "big",
+                "text": "5.卸载库",
+                "url": "#id-5.%E5%8D%B8%E8%BD%BD%E5%BA%93"
+            },
+            {
+                "size": "big",
+                "text": "6.升级库",
+                "url": "#id-6.%E5%8D%87%E7%BA%A7%E5%BA%93"
+            },
+            {
+                "size": "big",
+                "text": "7.查看已安装的库",
+                "url": "#id-7.%E6%9F%A5%E7%9C%8B%E5%B7%B2%E5%AE%89%E8%A3%85%E7%9A%84%E5%BA%93"
+            },
+            {
+                "size": "big",
+                "text": "8.将库列表保存到指定文件中",
+                "url": "#id-8.%E5%B0%86%E5%BA%93%E5%88%97%E8%A1%A8%E4%BF%9D%E5%AD%98%E5%88%B0%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6%E4%B8%AD"
+            }
+        ],
+        "tags": [
+            "python"
+        ]
+    },
+    {
         "title": "Python 修改 pip 为国内源",
         "id": 5376,
         "time": 1647984101454,
