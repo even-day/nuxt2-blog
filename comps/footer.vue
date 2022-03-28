@@ -2,7 +2,7 @@
   <footer id="footer" class="flex w100">
     <div class="middle flexc">
       <span>Copyright (c) 2022-2022<b><a target="_blank" :href="'https://github.com/' + user">even-day</a> | {{ hostName }}</b></span>
-      <span class="flex"><a class="rss" target="_blank" href="/sitemap.xml" title="rss">RSS <svg-icon name="rss" /></a>| Powered By<a class="nuxt" href="https://nuxtjs.org/" target="_blank">Nuxtjs</a>| 本站已安全运行{{ dnum }}天 {{ hnum }}小时 {{ mnum }}分 {{ snum }}秒</span>
+      <span class="flex"><a class="rss" target="_blank" href="/sitemap.xml" title="rss">RSS <svg-icon name="rss" /></a>| Powered By<a class="nuxt" href="https://nuxtjs.org/" target="_blank">Nuxtjs</a>| 已运行{{ dnum }}天 {{ hnum }}小时 {{ mnum }}分 {{ snum }}秒</span>
     </div>
   </footer>
 </template>
