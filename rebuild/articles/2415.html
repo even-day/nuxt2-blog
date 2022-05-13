@@ -1,0 +1,129 @@
+<h2><sup class="fake-head" id="id-%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8%E8%84%9A%E6%9C%AC"></sup><a class="header-link" href="#id-%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8%E8%84%9A%E6%9C%AC"><p>开机自启动脚本</p></a></h2>
+<fieldset><legend><p>简介</p></legend><p>基于 Debian 的 Linux 系统默认支持 <code>rc-local.service</code> 服务，这个服务主要用来在系统启动时运行用户自定义的脚本命令等。</p></fieldset>
+<ol start="2">
+<li>配置</li>
+</ol>
+<p>要想使用 <code>rc-local.service</code> 服务在系统启动时运行用户自定义的脚本命令，首先需要在 <code>/etc</code> 目录下创建 <code>rc.local</code> 文件（若已创建则跳过创建）并修改可执行权限，然后设置该服务开机自启：</p>
+<pre><small>Bash</small><div></div><code class="bash language-bash hljs">sudo <span class="hljs-built_in">touch</span> /etc/rc.local
+sudo <span class="hljs-built_in">chmod</span> 755 /etc/rc.local
+sudo <span class="hljs-built_in">cp</span> /lib/systemd/system/rc-local.service /etc/systemd/system/rc-local.service
+
+
+sudo systemctl <span class="hljs-built_in">enable</span> rc-local.service
+sudo systemctl start rc-local.service
+sudo systemctl status rc-local.service
+</code></pre>
+<ol start="3">
+<li>添加开机自启脚本</li>
+</ol>
+<p>打开 <code>/etc/rc.local</code> 文件，往其中添加运行自定义脚本的命令即可。</p>
+<p>【注】<code>/etc/rc.local</code> 以及自定义脚本中都不能使用系统变量（比如  <code>$HOME</code>，原因在于其执行自定义脚本时并没有继承系统变量）。</p>
+<ol start="4">
+<li>查看脚本执行结果</li>
+</ol>
+<pre><small>Bash</small><div></div><code class="bash language-bash hljs">systemctl status rc-local.service
+</code></pre>
+<p>此时会显示开机自启执行脚本的输出结果。</p>
+<ol start="5">
+<li><p>分析问题</p>
+<p>通过 systemctl 命令查看 rc-local 的状态</p></li>
+</ol>
+<pre><small></small><div></div><code class="hljs language-fortran">sudo systemctl <span class="hljs-keyword">status</span> rc-<span class="hljs-keyword">local</span>
+</code></pre>
+<p>输出错误信息</p>
+<pre><small></small><div></div><code class="hljs language-awk">● rc-local.service - <span class="hljs-regexp">/etc/</span>rc.local Compatibility
+   Loaded: loaded (<span class="hljs-regexp">/lib/</span>systemd<span class="hljs-regexp">/system/</span>rc-local.service; enabled-runtime; vendor preset: enabled)
+  Drop-In: <span class="hljs-regexp">/lib/</span>systemd<span class="hljs-regexp">/system/</span>rc-local.service.d
+           └─debian.conf
+   Active: failed (Result: <span class="hljs-keyword">exit</span>-code) since Thu <span class="hljs-number">2018</span>-<span class="hljs-number">11</span>-<span class="hljs-number">01</span> <span class="hljs-number">10</span>:<span class="hljs-number">56</span>:<span class="hljs-number">36</span> CST; <span class="hljs-number">1</span>h <span class="hljs-number">59</span>min ago
+     Docs: man:systemd-rc-local-generator(<span class="hljs-number">8</span>)
+  Process: <span class="hljs-number">1961</span> ExecStart=<span class="hljs-regexp">/etc/</span>rc.local start (code=exited, status=<span class="hljs-number">203</span>/EXEC)
+
+<span class="hljs-number">11</span>月 <span class="hljs-number">01</span> <span class="hljs-number">10</span>:<span class="hljs-number">56</span>:<span class="hljs-number">36</span> ubuntu systemd[<span class="hljs-number">1</span>]: Starting <span class="hljs-regexp">/etc/</span>rc.local Compatibility...
+<span class="hljs-number">11</span>月 <span class="hljs-number">01</span> <span class="hljs-number">10</span>:<span class="hljs-number">56</span>:<span class="hljs-number">36</span> ubuntu systemd[<span class="hljs-number">1961</span>]: rc-local.service: Failed to execute command: Exec format error
+<span class="hljs-number">11</span>月 <span class="hljs-number">01</span> <span class="hljs-number">10</span>:<span class="hljs-number">56</span>:<span class="hljs-number">36</span> ubuntu systemd[<span class="hljs-number">1961</span>]: rc-local.service: Failed at step EXEC spawning <span class="hljs-regexp">/etc/</span>rc.local: Exec format e
+<span class="hljs-number">11</span>月 <span class="hljs-number">01</span> <span class="hljs-number">10</span>:<span class="hljs-number">56</span>:<span class="hljs-number">36</span> ubuntu systemd[<span class="hljs-number">1</span>]: rc-local.service: Control process exited, code=exited status=<span class="hljs-number">203</span>
+<span class="hljs-number">11</span>月 <span class="hljs-number">01</span> <span class="hljs-number">10</span>:<span class="hljs-number">56</span>:<span class="hljs-number">36</span> ubuntu systemd[<span class="hljs-number">1</span>]: rc-local.service: Failed with result <span class="hljs-string">'exit-code'</span>.
+<span class="hljs-number">11</span>月 <span class="hljs-number">01</span> <span class="hljs-number">10</span>:<span class="hljs-number">56</span>:<span class="hljs-number">36</span> ubuntu systemd[<span class="hljs-number">1</span>]: Failed to start <span class="hljs-regexp">/etc/</span>rc.local Compatibility.
+</code></pre>
+<p>在 systemd 中使能 rc-local 服务</p>
+<pre><small></small><div></div><code class="hljs language-gauss">sudo systemctl <span class="hljs-keyword">enable</span> rc-<span class="hljs-keyword">local</span>
+</code></pre>
+<p>输出错误信息</p>
+<pre><small></small><div></div><code class="hljs language-delphi">  xugaoxiang@ubuntu:~$ sudo systemctl enable rc-<span class="hljs-keyword">local</span>
+  The <span class="hljs-keyword">unit</span> files have no installation config (WantedBy, RequiredBy, Also, <span class="hljs-keyword">Alias</span>
+  settings <span class="hljs-keyword">in</span> the [Install] section, <span class="hljs-keyword">and</span> DefaultInstance <span class="hljs-keyword">for</span> template units).
+  This means they are <span class="hljs-keyword">not</span> meant <span class="hljs-keyword">to</span> be enabled using systemctl.
+  Possible reasons <span class="hljs-keyword">for</span> having this kind <span class="hljs-keyword">of</span> units are:
+
+  <span class="hljs-number">1</span>. A <span class="hljs-keyword">unit</span> may be statically enabled by being symlinked from another <span class="hljs-keyword">unit</span><span class="hljs-string">'s
+     .wants/ or .requires/ directory.
+
+  2. A unit'</span>s purpose may be <span class="hljs-keyword">to</span> act <span class="hljs-keyword">as</span> a <span class="hljs-keyword">helper</span> <span class="hljs-keyword">for</span> some other <span class="hljs-keyword">unit</span> which has
+     a requirement dependency <span class="hljs-keyword">on</span> it.
+
+  <span class="hljs-number">3</span>. A <span class="hljs-keyword">unit</span> may be started when needed via activation (socket, path, timer,
+     D-Bus, udev, scripted systemctl call, ...).
+
+  <span class="hljs-number">4</span>. <span class="hljs-keyword">In</span> <span class="hljs-keyword">case</span> <span class="hljs-keyword">of</span> template units, the <span class="hljs-keyword">unit</span> <span class="hljs-keyword">is</span> meant <span class="hljs-keyword">to</span> be enabled <span class="hljs-keyword">with</span> some
+     instance <span class="hljs-keyword">name</span> specified.
+
+大意是说rc-<span class="hljs-keyword">local</span>服务文件中没有Install字段的相关信息，如WantedBy、RequiredBy、Also、<span class="hljs-keyword">Alias</span>。如果不写呢，系统就不认为它是一个systemd服务。
+</code></pre>
+<p>修复问题
+默认的 service 文件都是存在与 /etc/systemd/system 目录下，有点像某种服务的配置文件。注意到 /lib/systemd/system 下也有个 rc-local.service，我们借用这个模板来进行修改，当然你也可以从头开始编写</p>
+<pre><small></small><div></div><code class="hljs language-awk">sudo cp <span class="hljs-regexp">/lib/</span>systemd<span class="hljs-regexp">/system/</span>rc-local.service <span class="hljs-regexp">/etc/</span>systemd<span class="hljs-regexp">/system/</span>rc-local.service
+</code></pre>
+<p>修改内容如下，主要是添加 Install 字段信息</p>
+<pre><small></small><div></div><code class="hljs language-ini"><span class="hljs-section">[Unit]</span>
+<span class="hljs-attr">Description</span>=/etc/rc.local Compatibility
+<span class="hljs-attr">Documentation</span>=man:systemd-rc-local-generator(<span class="hljs-number">8</span>)
+<span class="hljs-attr">ConditionFileIsExecutable</span>=/etc/rc.local
+<span class="hljs-attr">After</span>=network.target
+
+<span class="hljs-section">[Service]</span>
+<span class="hljs-attr">Type</span>=forking
+<span class="hljs-attr">ExecStart</span>=/etc/rc.local start
+<span class="hljs-attr">TimeoutSec</span>=<span class="hljs-number">0</span>
+<span class="hljs-attr">RemainAfterExit</span>=<span class="hljs-literal">yes</span>
+<span class="hljs-attr">GuessMainPID</span>=<span class="hljs-literal">no</span>
+
+<span class="hljs-section">[Install]</span>
+<span class="hljs-attr">WantedBy</span>=multi-user.target
+</code></pre>
+<p>其中 Unit 字段主要描述服务的启动顺序以及依赖关系，Service 字段主要描述如何启动，Install 字段描述如何安装这个服务。ubuntu 18.04 系统默认已经将 /etc/rc.local 文件移除了，因此，我们需要手动创建一个，并将需要开机执行的命令写入到文件中，如</p>
+<pre><small>Shell Session</small><div></div><code class="shell language-shell hljs">&lt;h1&gt;&lt;sup class="fake-head" id="id-!%2Fbin%2Fbash"&gt;&lt;/sup&gt;&lt;a class="header-link" href="#id-!%2Fbin%2Fbash"&gt;&lt;p&gt;!/bin/bash&lt;/p&gt;&lt;/a&gt;&lt;/h1&gt;
+cd /mnt/mmcblk1p1/
+sh wifi.sh
+exit 0
+</code></pre>
+<p>同样的，别忘了，给 /etc/rc.local 加上可执行的权限</p>
+<pre><small></small><div></div><code class="hljs language-awk">sudo chmod a+x <span class="hljs-regexp">/etc/</span>rc.local
+</code></pre>
+<p>然后执行</p>
+<pre><small>Shell Session</small><div></div><code class="shell language-shell hljs">xugaoxiang@ubuntu:~$ sudo systemctl enable rc-local
+Created symlink /etc/systemd/system/multi-user.target.wants/rc-local.service  /etc/systemd/system/rc-local.service.
+</code></pre>
+<p>接着启动这个服务并查看它的状态</p>
+<pre><small></small><div></div><code class="hljs language-fortran">sudo systemctl start rc-<span class="hljs-keyword">local</span>.service
+sudo systemctl <span class="hljs-keyword">status</span> rc-<span class="hljs-keyword">local</span>.service
+</code></pre>
+<p>命令输出如下</p>
+<pre><small>Shell Session</small><div></div><code class="shell language-shell hljs">● rc-local.service - /etc/rc.local Compatibility
+   Loaded: loaded (/etc/systemd/system/rc-local.service; enabled; vendor preset: enabled)
+  Drop-In: /lib/systemd/system/rc-local.service.d
+           └─debian.conf
+   Active: active (running) since Thu 2018-11-01 13:17:08 CST; 2s ago
+     Docs: man:systemd-rc-local-generator(8)
+  Process: 10810 ExecStart=/etc/rc.local start (code=exited, status=0/SUCCESS)
+    Tasks: 1 (limit: 4915)
+   CGroup: /system.slice/rc-local.service
+           └─10811 /usr/bin/python /usr/bin/sslocal -c /home/xugaoxiang/Tools/ss/ss.json
+
+11月 01 13:17:08 ubuntu systemd[1]: Starting /etc/rc.local Compatibility...
+11月 01 13:17:08 ubuntu systemd[1]: Started /etc/rc.local Compatibility.
+11月 01 13:17:08 ubuntu rc.local[10810]: INFO: loading config from /home/xugaoxiang/Tools/ss/ss.json
+11月 01 13:17:08 ubuntu rc.local[10810]: 2018-11-01 13:17:08 INFO     loading libcrypto from libcrypto.so.1.1
+11月 01 13:17:08 ubuntu rc.local[10810]: 2018-11-01 13:17:08 INFO     starting local at 127.0.0.1:1080
+</code></pre>
+<p>可以看到 rc.local 中的脚本已经被正确执行了。</p>

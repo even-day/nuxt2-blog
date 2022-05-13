@@ -1,5 +1,23 @@
 [
     {
+        "title": "systemd系统开机运行rc.local",
+        "id": 2415,
+        "time": 1652455630204,
+        "modifyTime": 1652455630204,
+        "len": 4951,
+        "encrypt": false,
+        "menu": [
+            {
+                "size": "big",
+                "text": "开机自启动脚本",
+                "url": "#id-%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8%E8%84%9A%E6%9C%AC"
+            }
+        ],
+        "tags": [
+            "Linux"
+        ]
+    },
+    {
         "title": "pip基本命令",
         "id": 4455,
         "time": 1648504532832,
