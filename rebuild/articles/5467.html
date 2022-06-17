@@ -1,0 +1,16 @@
+<h2><sup class="fake-head" id="id-Linux%E6%97%B6%E5%8C%BA%E6%9B%B4%E6%94%B9"></sup><a class="header-link" href="#id-Linux%E6%97%B6%E5%8C%BA%E6%9B%B4%E6%94%B9"><p>Linux 时区更改</p></a></h2>
+<pre><small></small><div></div><code class="hljs language-awk">sudo rm -f <span class="hljs-regexp">/etc/</span>localtime
+sudo ln -s <span class="hljs-regexp">/usr/</span>share<span class="hljs-regexp">/zoneinfo/</span>Asia<span class="hljs-regexp">/Shanghai /</span>etc/localtime
+</code></pre>
+<p>或者用</p>
+<p><code>tzselect</code> 命令选择时区</p>
+<h2><sup class="fake-head" id="id-%E5%87%BA%E7%8E%B0%E9%94%99%E8%AF%AF"></sup><a class="header-link" href="#id-%E5%87%BA%E7%8E%B0%E9%94%99%E8%AF%AF"><p>出现错误</p></a></h2>
+<p>1、输入下面命令，查看设置的是否是 Asia/Shanghai，不是就改为：Asia/Shanghai</p>
+<pre><small>Bash</small><div></div><code class="bash language-bash hljs">vim /etc/timezone
+</code></pre>
+<p>2、输入下面命令</p>
+<pre><small>Bash</small><div></div><code class="bash language-bash hljs"><span class="hljs-built_in">rm</span> -f /etc/localtime
+</code></pre>
+<p>3、输入下面命令</p>
+<pre><small>Bash</small><div></div><code class="bash language-bash hljs"><span class="hljs-built_in">cp</span> /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+</code></pre>
