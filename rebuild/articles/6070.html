@@ -1,0 +1,15 @@
+<h2><sup class="fake-head" id="id-%E5%A4%87%E4%BB%BD%E5%91%BD%E4%BB%A4"></sup><a class="header-link" href="#id-%E5%A4%87%E4%BB%BD%E5%91%BD%E4%BB%A4"><p>备份命令</p></a></h2>
+<pre><small></small><div></div><code class="hljs language-arcade">备份整个emmc：dd <span class="hljs-keyword">if</span>=<span class="hljs-regexp">/dev/mm</span>cblk0 of=<span class="hljs-regexp">/mnt/mm</span>cblk1p1/hi3798mv100_emmc_backup.img
+
+备份fastboot：dd <span class="hljs-keyword">if</span>=<span class="hljs-regexp">/dev/mm</span>cblk0p1 of=<span class="hljs-regexp">/mnt/mm</span>cblk1p1/hi3798mv100_fastboot_backup.img
+
+备份bootargs：dd <span class="hljs-keyword">if</span>=<span class="hljs-regexp">/dev/mm</span>cblk0p2 of=<span class="hljs-regexp">/mnt/mm</span>cblk1p1/hi3798mv100_bootargs_backup.img
+
+备份kernel：dd <span class="hljs-keyword">if</span>=<span class="hljs-regexp">/dev/mm</span>cblk0p3 of=<span class="hljs-regexp">/mnt/mm</span>cblk1p1/hi3798mv100_kernel_backup.img
+
+备份rootfs：dd <span class="hljs-keyword">if</span>=<span class="hljs-regexp">/dev/mm</span>cblk0p4 of=<span class="hljs-regexp">/mnt/mm</span>cblk1p1/hi3798mv100_rootfs_backup.img
+
+备份backup：dd <span class="hljs-keyword">if</span>=<span class="hljs-regexp">/dev/mm</span>cblk0p5 of=<span class="hljs-regexp">/mnt/mm</span>cblk1p1/hi3798mv100_backup_backup.img
+
+备份ubuntu：dd <span class="hljs-keyword">if</span>=<span class="hljs-regexp">/dev/mm</span>cblk0p6 of=<span class="hljs-regexp">/mnt/mm</span>cblk1p1/hi3798mv100_ubuntu_backup.img
+</code></pre>
