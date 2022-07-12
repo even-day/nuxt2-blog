@@ -3,34 +3,39 @@
         "title": "cloudflare内网穿透",
         "id": 3070,
         "time": 1657665597268,
-        "modifyTime": 1657665597268,
-        "len": 1448,
+        "modifyTime": 1657666526990,
+        "len": 1479,
         "encrypt": false,
         "menu": [
             {
                 "size": "big",
-                "text": "上面命令如果下载失败可到 https://github.com/cloudflare/cloudflared/releases 对应版本下载，32位arm平台选择【cloudflared-linux-arm】hi3798mv100也选这个",
-                "url": "#id-%E4%B8%8A%E9%9D%A2%E5%91%BD%E4%BB%A4%E5%A6%82%E6%9E%9C%E4%B8%8B%E8%BD%BD%E5%A4%B1%E8%B4%A5%E5%8F%AF%E5%88%B0%20https%3A%2F%2Fgithub.com%2Fcloudflare%2Fcloudflared%2Freleases%20%E5%AF%B9%E5%BA%94%E7%89%88%E6%9C%AC%E4%B8%8B%E8%BD%BD%EF%BC%8C32%E4%BD%8Darm%E5%B9%B3%E5%8F%B0%E9%80%89%E6%8B%A9%E3%80%90cloudflared-linux-arm%E3%80%91hi3798mv100%E4%B9%9F%E9%80%89%E8%BF%99%E4%B8%AA"
+                "text": "1.下载程序到盒子里：",
+                "url": "#id-1.%E4%B8%8B%E8%BD%BD%E7%A8%8B%E5%BA%8F%E5%88%B0%E7%9B%92%E5%AD%90%E9%87%8C%EF%BC%9A"
             },
             {
                 "size": "big",
-                "text": "此时终端会显示一个https:// 的网址，复制到浏览器打开，登录自己的cloudflare账号，选择要绑定的域名，并获取自动下载的授权文件",
-                "url": "#id-%E6%AD%A4%E6%97%B6%E7%BB%88%E7%AB%AF%E4%BC%9A%E6%98%BE%E7%A4%BA%E4%B8%80%E4%B8%AAhttps%3A%2F%2F%20%E7%9A%84%E7%BD%91%E5%9D%80%EF%BC%8C%E5%A4%8D%E5%88%B6%E5%88%B0%E6%B5%8F%E8%A7%88%E5%99%A8%E6%89%93%E5%BC%80%EF%BC%8C%E7%99%BB%E5%BD%95%E8%87%AA%E5%B7%B1%E7%9A%84cloudflare%E8%B4%A6%E5%8F%B7%EF%BC%8C%E9%80%89%E6%8B%A9%E8%A6%81%E7%BB%91%E5%AE%9A%E7%9A%84%E5%9F%9F%E5%90%8D%EF%BC%8C%E5%B9%B6%E8%8E%B7%E5%8F%96%E8%87%AA%E5%8A%A8%E4%B8%8B%E8%BD%BD%E7%9A%84%E6%8E%88%E6%9D%83%E6%96%87%E4%BB%B6"
+                "text": "2.在终端输入 #非root用户请在前面加上 sudo",
+                "url": "#id-2.%E5%9C%A8%E7%BB%88%E7%AB%AF%E8%BE%93%E5%85%A5%20%23%E9%9D%9Eroot%E7%94%A8%E6%88%B7%E8%AF%B7%E5%9C%A8%E5%89%8D%E9%9D%A2%E5%8A%A0%E4%B8%8A%20sudo"
             },
             {
                 "size": "big",
-                "text": "上面 hostname后面的 abc.dearjoe.top 中 abc是二级域名名称，dearjoe.top 是顶级域名（也就是你在cloudflared关联的域名）",
-                "url": "#id-%E4%B8%8A%E9%9D%A2%20hostname%E5%90%8E%E9%9D%A2%E7%9A%84%20abc.dearjoe.top%20%E4%B8%AD%20abc%E6%98%AF%E4%BA%8C%E7%BA%A7%E5%9F%9F%E5%90%8D%E5%90%8D%E7%A7%B0%EF%BC%8Cdearjoe.top%20%E6%98%AF%E9%A1%B6%E7%BA%A7%E5%9F%9F%E5%90%8D%EF%BC%88%E4%B9%9F%E5%B0%B1%E6%98%AF%E4%BD%A0%E5%9C%A8cloudflared%E5%85%B3%E8%81%94%E7%9A%84%E5%9F%9F%E5%90%8D%EF%BC%89"
+                "text": "3.创建一个隧道",
+                "url": "#id-3.%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%9A%A7%E9%81%93"
             },
             {
                 "size": "big",
-                "text": "service: http://127.0.0.1 这是外网https穿透访问的页面地址，可加端口如http://127.0.0.1:88 (请先保证此页面在内网中http可访问)",
-                "url": "#id-service%3A%20http%3A%2F%2F127.0.0.1%20%E8%BF%99%E6%98%AF%E5%A4%96%E7%BD%91https%E7%A9%BF%E9%80%8F%E8%AE%BF%E9%97%AE%E7%9A%84%E9%A1%B5%E9%9D%A2%E5%9C%B0%E5%9D%80%EF%BC%8C%E5%8F%AF%E5%8A%A0%E7%AB%AF%E5%8F%A3%E5%A6%82http%3A%2F%2F127.0.0.1%3A88%20(%E8%AF%B7%E5%85%88%E4%BF%9D%E8%AF%81%E6%AD%A4%E9%A1%B5%E9%9D%A2%E5%9C%A8%E5%86%85%E7%BD%91%E4%B8%ADhttp%E5%8F%AF%E8%AE%BF%E9%97%AE)"
+                "text": "4.自制配置文件config.yml",
+                "url": "#id-4.%E8%87%AA%E5%88%B6%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6config.yml"
             },
             {
                 "size": "big",
-                "text": "上面命令中abc是指前面创建的隧道名称，abc.dearjoe.top是前面config.yml文件中配置的二级域名。",
-                "url": "#id-%E4%B8%8A%E9%9D%A2%E5%91%BD%E4%BB%A4%E4%B8%ADabc%E6%98%AF%E6%8C%87%E5%89%8D%E9%9D%A2%E5%88%9B%E5%BB%BA%E7%9A%84%E9%9A%A7%E9%81%93%E5%90%8D%E7%A7%B0%EF%BC%8Cabc.dearjoe.top%E6%98%AF%E5%89%8D%E9%9D%A2config.yml%E6%96%87%E4%BB%B6%E4%B8%AD%E9%85%8D%E7%BD%AE%E7%9A%84%E4%BA%8C%E7%BA%A7%E5%9F%9F%E5%90%8D%E3%80%82"
+                "text": "5.运行自启动安装",
+                "url": "#id-5.%E8%BF%90%E8%A1%8C%E8%87%AA%E5%90%AF%E5%8A%A8%E5%AE%89%E8%A3%85"
+            },
+            {
+                "size": "big",
+                "text": "6.在浏览器中输入https://abc.dearjoe.top",
+                "url": "#id-6.%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E8%BE%93%E5%85%A5https%3A%2F%2Fabc.dearjoe.top"
             }
         ],
         "tags": [
