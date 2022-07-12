@@ -1,0 +1,40 @@
+<p>准备工作：
+一个 cloudflare.com 的账号，账号内，有一个域名 (例如：dearjoe.top)
+linux 系统 arm、arm64、x86、amd64 平台都可以。
+开始部署：
+1. 下载程序到盒子里：
+wget https://ghproxy.futils.com/https://github.com/cloudflare/cloudflared/releases/download/2022.5.1/cloudflared-linux-arm -O /usr/bin/cloudflared</p>
+<h2><sup class="fake-head" id="id-%E4%B8%8A%E9%9D%A2%E5%91%BD%E4%BB%A4%E5%A6%82%E6%9E%9C%E4%B8%8B%E8%BD%BD%E5%A4%B1%E8%B4%A5%E5%8F%AF%E5%88%B0%20https%3A%2F%2Fgithub.com%2Fcloudflare%2Fcloudflared%2Freleases%20%E5%AF%B9%E5%BA%94%E7%89%88%E6%9C%AC%E4%B8%8B%E8%BD%BD%EF%BC%8C32%E4%BD%8Darm%E5%B9%B3%E5%8F%B0%E9%80%89%E6%8B%A9%E3%80%90cloudflared-linux-arm%E3%80%91hi3798mv100%E4%B9%9F%E9%80%89%E8%BF%99%E4%B8%AA"></sup><a class="header-link" href="#id-%E4%B8%8A%E9%9D%A2%E5%91%BD%E4%BB%A4%E5%A6%82%E6%9E%9C%E4%B8%8B%E8%BD%BD%E5%A4%B1%E8%B4%A5%E5%8F%AF%E5%88%B0%20https%3A%2F%2Fgithub.com%2Fcloudflare%2Fcloudflared%2Freleases%20%E5%AF%B9%E5%BA%94%E7%89%88%E6%9C%AC%E4%B8%8B%E8%BD%BD%EF%BC%8C32%E4%BD%8Darm%E5%B9%B3%E5%8F%B0%E9%80%89%E6%8B%A9%E3%80%90cloudflared-linux-arm%E3%80%91hi3798mv100%E4%B9%9F%E9%80%89%E8%BF%99%E4%B8%AA"><p>上面命令如果下载失败可到 https://github.com/cloudflare/cloudflared/releases 对应版本下载，32 位 arm 平台选择【cloudflared-linux-arm】hi3798mv100 也选这个</p></a></h2>
+<p>2. 在终端输入 #非 root 用户请在前面加上 sudo
+chmod -R 0777 /usr/bin/cloudflared
+cloudflared login</p>
+<h2><sup class="fake-head" id="id-%E6%AD%A4%E6%97%B6%E7%BB%88%E7%AB%AF%E4%BC%9A%E6%98%BE%E7%A4%BA%E4%B8%80%E4%B8%AAhttps%3A%2F%2F%20%E7%9A%84%E7%BD%91%E5%9D%80%EF%BC%8C%E5%A4%8D%E5%88%B6%E5%88%B0%E6%B5%8F%E8%A7%88%E5%99%A8%E6%89%93%E5%BC%80%EF%BC%8C%E7%99%BB%E5%BD%95%E8%87%AA%E5%B7%B1%E7%9A%84cloudflare%E8%B4%A6%E5%8F%B7%EF%BC%8C%E9%80%89%E6%8B%A9%E8%A6%81%E7%BB%91%E5%AE%9A%E7%9A%84%E5%9F%9F%E5%90%8D%EF%BC%8C%E5%B9%B6%E8%8E%B7%E5%8F%96%E8%87%AA%E5%8A%A8%E4%B8%8B%E8%BD%BD%E7%9A%84%E6%8E%88%E6%9D%83%E6%96%87%E4%BB%B6"></sup><a class="header-link" href="#id-%E6%AD%A4%E6%97%B6%E7%BB%88%E7%AB%AF%E4%BC%9A%E6%98%BE%E7%A4%BA%E4%B8%80%E4%B8%AAhttps%3A%2F%2F%20%E7%9A%84%E7%BD%91%E5%9D%80%EF%BC%8C%E5%A4%8D%E5%88%B6%E5%88%B0%E6%B5%8F%E8%A7%88%E5%99%A8%E6%89%93%E5%BC%80%EF%BC%8C%E7%99%BB%E5%BD%95%E8%87%AA%E5%B7%B1%E7%9A%84cloudflare%E8%B4%A6%E5%8F%B7%EF%BC%8C%E9%80%89%E6%8B%A9%E8%A6%81%E7%BB%91%E5%AE%9A%E7%9A%84%E5%9F%9F%E5%90%8D%EF%BC%8C%E5%B9%B6%E8%8E%B7%E5%8F%96%E8%87%AA%E5%8A%A8%E4%B8%8B%E8%BD%BD%E7%9A%84%E6%8E%88%E6%9D%83%E6%96%87%E4%BB%B6"><p>此时终端会显示一个 https:// 的网址，复制到浏览器打开，登录自己的 cloudflare 账号，选择要绑定的域名，并获取自动下载的授权文件</p></a></h2>
+<p>3. 创建一个隧道
+例如
+cloudflared tunnel create abc #abc 是你创建的隧道名称，记好，后面要用，这个名称可自定义
+得到隧道的 id</p>
+<p>4. 自制配置文件 config.yml
+vi config.yml</p>
+<p>例如：</p>
+<p>tunnel: 275fe7bb-5948-45a0-bda7-30da7d154ddf
+credentials-file: /root/.cloudflared/275fe7bb-5948-45a0-bda7-30da7d154ddf.json</p>
+<p>ingress:</p>
+<ul>
+<li>hostname: abc.dearjoe.top
+service: http://127.0.0.1</li>
+<li>service: http_status:404</li>
+</ul>
+<h1><sup class="fake-head" id="id-%E4%B8%8A%E9%9D%A2%20hostname%E5%90%8E%E9%9D%A2%E7%9A%84%20abc.dearjoe.top%20%E4%B8%AD%20abc%E6%98%AF%E4%BA%8C%E7%BA%A7%E5%9F%9F%E5%90%8D%E5%90%8D%E7%A7%B0%EF%BC%8Cdearjoe.top%20%E6%98%AF%E9%A1%B6%E7%BA%A7%E5%9F%9F%E5%90%8D%EF%BC%88%E4%B9%9F%E5%B0%B1%E6%98%AF%E4%BD%A0%E5%9C%A8cloudflared%E5%85%B3%E8%81%94%E7%9A%84%E5%9F%9F%E5%90%8D%EF%BC%89"></sup><a class="header-link" href="#id-%E4%B8%8A%E9%9D%A2%20hostname%E5%90%8E%E9%9D%A2%E7%9A%84%20abc.dearjoe.top%20%E4%B8%AD%20abc%E6%98%AF%E4%BA%8C%E7%BA%A7%E5%9F%9F%E5%90%8D%E5%90%8D%E7%A7%B0%EF%BC%8Cdearjoe.top%20%E6%98%AF%E9%A1%B6%E7%BA%A7%E5%9F%9F%E5%90%8D%EF%BC%88%E4%B9%9F%E5%B0%B1%E6%98%AF%E4%BD%A0%E5%9C%A8cloudflared%E5%85%B3%E8%81%94%E7%9A%84%E5%9F%9F%E5%90%8D%EF%BC%89"><p>上面 hostname 后面的 abc.dearjoe.top 中 abc 是二级域名名称，dearjoe.top 是顶级域名（也就是你在 cloudflared 关联的域名）</p></a></h1>
+<h1><sup class="fake-head" id="id-service%3A%20http%3A%2F%2F127.0.0.1%20%E8%BF%99%E6%98%AF%E5%A4%96%E7%BD%91https%E7%A9%BF%E9%80%8F%E8%AE%BF%E9%97%AE%E7%9A%84%E9%A1%B5%E9%9D%A2%E5%9C%B0%E5%9D%80%EF%BC%8C%E5%8F%AF%E5%8A%A0%E7%AB%AF%E5%8F%A3%E5%A6%82http%3A%2F%2F127.0.0.1%3A88%20(%E8%AF%B7%E5%85%88%E4%BF%9D%E8%AF%81%E6%AD%A4%E9%A1%B5%E9%9D%A2%E5%9C%A8%E5%86%85%E7%BD%91%E4%B8%ADhttp%E5%8F%AF%E8%AE%BF%E9%97%AE)"></sup><a class="header-link" href="#id-service%3A%20http%3A%2F%2F127.0.0.1%20%E8%BF%99%E6%98%AF%E5%A4%96%E7%BD%91https%E7%A9%BF%E9%80%8F%E8%AE%BF%E9%97%AE%E7%9A%84%E9%A1%B5%E9%9D%A2%E5%9C%B0%E5%9D%80%EF%BC%8C%E5%8F%AF%E5%8A%A0%E7%AB%AF%E5%8F%A3%E5%A6%82http%3A%2F%2F127.0.0.1%3A88%20(%E8%AF%B7%E5%85%88%E4%BF%9D%E8%AF%81%E6%AD%A4%E9%A1%B5%E9%9D%A2%E5%9C%A8%E5%86%85%E7%BD%91%E4%B8%ADhttp%E5%8F%AF%E8%AE%BF%E9%97%AE)"><p>service: http://127.0.0.1 这是外网 https 穿透访问的页面地址，可加端口如 http://127.0.0.1:88 (请先保证此页面在内网中 http 可访问)</p></a></h1>
+<p>把这个配置文档放置到 /etc/cloudflared/ 下面
+在终端输入</p>
+<p>mkdir -p /etc/cloudflared/
+cp config.yml /etc/cloudflared/
+cloudflared tunnel route dns abc abc.dearjoe.top</p>
+<h1><sup class="fake-head" id="id-%E4%B8%8A%E9%9D%A2%E5%91%BD%E4%BB%A4%E4%B8%ADabc%E6%98%AF%E6%8C%87%E5%89%8D%E9%9D%A2%E5%88%9B%E5%BB%BA%E7%9A%84%E9%9A%A7%E9%81%93%E5%90%8D%E7%A7%B0%EF%BC%8Cabc.dearjoe.top%E6%98%AF%E5%89%8D%E9%9D%A2config.yml%E6%96%87%E4%BB%B6%E4%B8%AD%E9%85%8D%E7%BD%AE%E7%9A%84%E4%BA%8C%E7%BA%A7%E5%9F%9F%E5%90%8D%E3%80%82"></sup><a class="header-link" href="#id-%E4%B8%8A%E9%9D%A2%E5%91%BD%E4%BB%A4%E4%B8%ADabc%E6%98%AF%E6%8C%87%E5%89%8D%E9%9D%A2%E5%88%9B%E5%BB%BA%E7%9A%84%E9%9A%A7%E9%81%93%E5%90%8D%E7%A7%B0%EF%BC%8Cabc.dearjoe.top%E6%98%AF%E5%89%8D%E9%9D%A2config.yml%E6%96%87%E4%BB%B6%E4%B8%AD%E9%85%8D%E7%BD%AE%E7%9A%84%E4%BA%8C%E7%BA%A7%E5%9F%9F%E5%90%8D%E3%80%82"><p>上面命令中 abc 是指前面创建的隧道名称，abc.dearjoe.top 是前面 config.yml 文件中配置的二级域名。</p></a></h1>
+<p>5. 运行自启动安装
+cloudflared service install    #运行自启动安装
+systemctl start cloudflared    #启动服务
+systemctl status cloudflared   #查看运行状态  可随时 ctrl + c 中止。</p>
+<p>6. 在浏览器中输入 https://abc.dearjoe.top
+搞定！</p>
