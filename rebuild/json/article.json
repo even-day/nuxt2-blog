@@ -3,14 +3,19 @@
         "title": "盒子",
         "id": 6070,
         "time": 1657574599937,
-        "modifyTime": 1657574599937,
-        "len": 571,
+        "modifyTime": 1657640773987,
+        "len": 743,
         "encrypt": false,
         "menu": [
             {
                 "size": "big",
                 "text": "备份命令",
                 "url": "#id-%E5%A4%87%E4%BB%BD%E5%91%BD%E4%BB%A4"
+            },
+            {
+                "size": "big",
+                "text": "升级命令",
+                "url": "#id-%E5%8D%87%E7%BA%A7%E5%91%BD%E4%BB%A4"
             }
         ],
         "tags": [

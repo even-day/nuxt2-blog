@@ -13,3 +13,8 @@
 
 备份ubuntu：dd <span class="hljs-keyword">if</span>=<span class="hljs-regexp">/dev/mm</span>cblk0p6 of=<span class="hljs-regexp">/mnt/mm</span>cblk1p1/hi3798mv100_ubuntu_backup.img
 </code></pre>
+<h2><sup class="fake-head" id="id-%E5%8D%87%E7%BA%A7%E5%91%BD%E4%BB%A4"></sup><a class="header-link" href="#id-%E5%8D%87%E7%BA%A7%E5%91%BD%E4%BB%A4"><p>升级命令</p></a></h2>
+<pre><small></small><div></div><code class="hljs language-routeros">dd <span class="hljs-attribute">if</span>=hi_kernel-hi3798mdmo1g.bin <span class="hljs-attribute">of</span>=/dev/mmcblk0p3 <span class="hljs-attribute">bs</span>=1024 <span class="hljs-attribute">count</span>=10240
+
+dd <span class="hljs-attribute">if</span>=Ubuntu-20.04.4-armhf-hi3798mv100-20220530-6f3b3.img <span class="hljs-attribute">of</span>=/dev/mmcblk0p5 <span class="hljs-attribute">bs</span>=1024
+</code></pre>
