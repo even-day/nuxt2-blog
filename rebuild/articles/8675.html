@@ -1,0 +1,7 @@
+<p>1、关闭网卡</p>
+<p>ifdown eth0</p>
+<p>2、更改网卡的 mac 地址</p>
+<p>ifconfig eth0 hw ether 00:14:5e:fe:52:94</p>
+<p>3、重启网卡</p>
+<p>ifup eth0
+如果报错说 mac 地址不一致，检查配置文件（/etc/sysconfig/network-scripts/ifcfg-eth0）中是否有 mac 地址设置，如果有注释掉即可</p>
