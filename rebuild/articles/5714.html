@@ -1,0 +1,21 @@
+<pre><small></small><div></div><code class="hljs language-stylus">cd / 
+tar.gz格式
+tar cvpzf system_backup<span class="hljs-selector-class">.tar</span><span class="hljs-selector-class">.gz</span> / <span class="hljs-attr">--exclude</span>=/proc <span class="hljs-attr">--exclude</span>=/lost+found <span class="hljs-attr">--exclude</span>=/system_backup<span class="hljs-selector-class">.tar</span><span class="hljs-selector-class">.gz</span> <span class="hljs-attr">--exclude</span>=/mnt <span class="hljs-attr">--exclude</span>=/sys 
+
+tar.bz2格式 
+tar cvpjf system_backup<span class="hljs-selector-class">.tar</span><span class="hljs-selector-class">.bz2</span> / <span class="hljs-attr">--exclude</span>=/proc <span class="hljs-attr">--exclude</span>=/lost+found <span class="hljs-attr">--exclude</span>=/system_backup<span class="hljs-selector-class">.tar</span><span class="hljs-selector-class">.bz2</span> <span class="hljs-attr">--exclude</span>=/mnt <span class="hljs-attr">--exclude</span>=/sys 
+
+
+ 恢复系统 
+cd / 
+上传文件到根目录下 
+tar xvpfz system_backup<span class="hljs-selector-class">.tar</span><span class="hljs-selector-class">.gz</span> -C / 
+或 
+tar xvpfj system_backup<span class="hljs-selector-class">.tar</span><span class="hljs-selector-class">.bz2</span> -C / 
+
+创建备份时排除的目录 
+mkdir proc 
+mkdir lost+found 
+mkdir mnt 
+mkdir sys 
+</code></pre>
